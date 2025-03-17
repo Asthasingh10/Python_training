@@ -347,6 +347,147 @@ print(type(x))  # Output: <class 'float'>
 
 In Python, variables are stored in memory using a concept called "references" rather than directly storing values. When you assign a value to a variable, Python:
 
-    Creates an object in memory.
-    Stores the value inside the object.
-    Assigns a reference (or label) to the variable, pointing to that object in memory.
+  - Python uses reference counting to manage memory.
+  - When a variable is assigned a value, Python creates an object and stores it in memory.
+  - The variable name is just a reference (pointer) to that object.
+  -  When an object is no longer referenced, Python’s garbage collector deletes it.
+
+2. **Exercise:**
+   - Assign values to variables, print them, and observe changes upon reassignment.
+
+   Let's explore how Python stores variables in memory by assigning values, printing their memory addresses (id()), and observing changes when reassigned.
+
+Step 1: Assigning Initial Values
+```python
+a = 10
+b = "Hello"
+c = [1, 2, 3]
+
+print(f"a: {a}, Memory Address: {id(a)}")
+print(f"b: {b}, Memory Address: {id(b)}")
+print(f"c: {c}, Memory Address: {id(c)}")
+```
+Step 2: Reassigning Variables
+```python
+a = 20  # Integer reassignment
+b = "World"  # String reassignment
+c.append(4)  # Modifying the list (mutable object)
+
+print("\nAfter Reassignment:")
+print(f"a: {a}, Memory Address: {id(a)}")  # Different address
+print(f"b: {b}, Memory Address: {id(b)}")  # Different address
+print(f"c: {c}, Memory Address: {id(c)}")  # Same address (modified in place)
+```
+Observations:
+
+Immutable Objects (Integers, Strings):
+
+When reassigned (a = 20, b = "World"), Python creates a new object in memory.
+The old object may be garbage collected if no other variable references it.
+Mutable Objects (Lists, Dictionaries):
+
+When modified (c.append(4)), the same memory address remains.
+This means the list is updated in place.
+
+
+## 2.8. Variable Names and Keywords
+
+1. **Exercise:**
+   - Try using reserved keywords as variable names and observe the errors.
+
+Python will throw a SyntaxError, indicating that these words cannot be used as variable names.
+
+2. **Fun Fact:**
+   - Use `import keyword; print(keyword.kwlist)` to list all reserved keywords in Python.
+
+
+## 2.9. Choosing the Right Variable Name
+
+1. **Exercise:**
+   - Rewrite a piece of code with meaningful variable names.
+
+def multiply_numbers(first_number, second_number):
+    product = first_number * second_number
+    return product
+
+num1 = 5
+num2 = 10
+result = multiply_numbers(num1, num2)
+print(result)
+
+2. **Challenge:**
+   - Why is `total_price` a better name than `tp`?
+   1. Readability
+   2. Maintainability
+   3. Avoiding Errors
+
+
+## 2.10. Statements and Expressions
+
+1. **Research:**
+   - Differentiate between statements and expressions.
+   Expression: -  A piece of code that evaluates to a value.
+   	         - Expressions can be part of statements, but statements cannot be part of expressions.
+               - Examples of expressions:
+                 5 + 3 (evaluates to 8)
+                 "Hello".upper() (evaluates to "HELLO")
+
+      -Statement: A complete instruction that performs an action but does not return a value.
+         Statement do not return any value.
+         Examples of statements:
+               x = 5 (assignment statement)
+               print("Hello") (print statement)
+
+2. **Exercise:**
+   - Identify statements and expressions in this code:
+     ```python
+     x = 5 + 3
+     print(x)
+     ```
+Expression:
+
+5 + 3 → This is an expression because it evaluates to 8.
+
+Statements:
+
+x = 5 + 3 → This is an assignment statement (it assigns the result of the expression 5 + 3 to x).
+
+print(x) → This is a function call statement (it performs an action by printing the value of x).
+
+
+## 2.11. Order of Operations
+
+1. **Fun Fact:**
+   - Python follows PEMDAS (Parentheses, Exponents, Multiplication/Division, Addition/Subtraction) rules.
+2. **Exercise:**
+   - Write expressions using multiple operators to explore Python’s order of operations.
+     ```python
+     result = 2 + 3 * 4 ** 2 / 8
+     print(result)
+     ```
+
+## 2.12. Reassignment
+
+### 2.12.1. Developing Your Mental Model of How Python Evaluates
+
+1. **Exercise:**
+   - Assign a value to a variable, reassign it, and observe the changes:
+     ```python
+     count = 10
+     print(count)
+     count = 20
+     print(count)
+     ```
+
+## 2.13. Updating Variables
+
+1. **Exercise:**
+   - Increment and decrement variables using `+=` and `-=`.
+     ```python
+     score = 100
+     score += 10
+     print(score)
+     score -= 5
+     print(score)
+     ```
+# *Finished*
