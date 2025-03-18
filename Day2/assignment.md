@@ -111,6 +111,22 @@ def calculate_discount(price, discount):
 
 print(calculate_discount(100, '10%'))
 ```
+Answer
+```python
+def calculate_discount(price, discount):
+    try:
+        discount = float(str(discount).replace('%', ''))
+        if discount < 0 or discount > 100:
+            return "Error: Discount must be between 0 and 100."
+        return price - (price * discount / 100)
+    except ValueError:
+        return "Error: Invalid discount format."
+print(calculate_discount(100, 10))      # Output: 90.0
+print(calculate_discount(100, '10%'))   # Output: 90.0
+print(calculate_discount(100, '10'))    # Output: 90.0
+print(calculate_discount(100, 'abc'))   # Output: Error 
+print(calculate_discount(100, 150))     # Output: Error
+```
 
 ### 5. Rubber Duck Debugging
 
@@ -122,6 +138,20 @@ result = 1
 for num in numbers:
     result *= num
 print("Product:", result)
+```
+Answer:
+```python
+Step1: - We create a list called numbers that contains [1, 2, 3, 4, 5].
+- We initialize a variable result with 1 because multiplying by 1 does not change the value.
+Step2: - The for loop iterates through each element in numbers:
+1️⃣ First loop: result = 1 * 1 → result = 1
+2️⃣ Second loop: result = 1 * 2 → result = 2
+3️⃣ Third loop: result = 2 * 3 → result = 6
+4️⃣ Fourth loop: result = 6 * 4 → result = 24
+5️⃣ Fifth loop: result = 24 * 5 → result = 120
+Step3: -The loop has finished, and result now holds 120.
+The program prints:
+Product: 120
 ```
 
 ### 6. Advanced Challenge: Debug a Multi-threaded Program
@@ -144,6 +174,33 @@ for t in threads:
     t.join()
 
 print("Counter:", counter)  # Expected: 200000
+```
+Answer: Fixing the Race Condition Using a Lock 🔒 
+The issue in my code is that multiple threads are modifying the shared variable counter at the same time, leading to data corruption.
+✅ Solution: 
+Use a threading.Lock
+A lock ensures that only one thread at a time modifies counter, preventing lost updates.
+```python
+import threading
+
+counter = 0
+lock = threading.Lock()  # Create a Lock
+
+def increment():
+    global counter
+    for _ in range(100000):
+        with lock:  # Lock before modifying counter
+            counter += 1
+
+# Create and start threads
+threads = [threading.Thread(target=increment) for _ in range(2)]
+for t in threads:
+    t.start()
+for t in threads:
+    t.join()
+
+print("Counter:", counter)  # Correct output: 200000
+
 ```
 
 ### 7. Activity: Debug with Breakpoints
@@ -170,6 +227,19 @@ print(divide(a, b))
 5. Step through the code to observe the flow of execution.
 6. Fix the division by zero error and re-run the code.
 
+Answer 
+```python
+def divide(a, b):
+    if b == 0:
+        return "Error: Cannot divide by zero"
+    result = a / b
+    return result
+
+a = 10
+b = 0
+print(divide(a, b))  # Output: Error: Cannot divide by zero
+
+```
 #### Learn More:
 
 - [VSCode Debugging Guide](https://code.visualstudio.com/docs/editor/debugging)
@@ -191,6 +261,25 @@ def inefficient_function():
 
 print(len(inefficient_function()))
 ```
+Answer
+✅ Optimized Solution (Using Generator)
+Instead of storing all values in a list, we can use a generator, which produces values one at a time, reducing memory usage.
+```python
+import time
+
+def efficient_function():
+    for i in range(100000):
+        yield i * 2  # Generates values one at a time
+
+# Convert to list only when needed (for testing purposes)
+data = list(efficient_function())  
+print(len(data))  # Output: 100000
+
+# Alternative: Using a loop instead of storing everything
+# for num in efficient_function():
+#     process(num)  # Perform operations without storing all values
+
+```
 
 ### 9. Unexpected None
 
@@ -201,6 +290,18 @@ def add(a, b):
     result = a + b
 print(add(3, 4))
 ```
+Answer : 
+The function calculates the sum (result = a + b) but does not return the value.
+Since there is no return statement, Python implicitly returns None.
+```python
+def add(a, b):
+    result = a + b
+    return result 
+
+print(add(3, 4))  # Output: 7
+
+```
+
 
 ### 10. Silent Failures
 
@@ -213,7 +314,15 @@ except:
     pass
 print("No error detected!")
 ```
+Answer
+```python
+try:
+    result = 10 / 0  # This causes ZeroDivisionError
+except:  # This catches ALL exceptions but ignores them
+    pass  # Silently ignores the error
 
+print("No error detected!")  # Executes even though an error occurred
+```
 ---
 
 ## Submission Guidelines:
