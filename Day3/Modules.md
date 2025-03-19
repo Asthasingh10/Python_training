@@ -459,10 +459,28 @@ except ValueError:
 ### 4. Advanced Import Strategies
 
 Write a script that:
-
 - Imports a module.
 - Checks if a function exists.
 - Executes it if available, otherwise gracefully handles the error.
+
+```python
+import importlib
+module_name = input("Enter module name: ")
+function_name = input("Enter function name: ")
+try:
+    module = importlib.import_module(module_name)
+    function = getattr(module, function_name, None)
+    if function:
+        result = function()
+        print("Output:", result)
+    else:
+        print(f"Error: Function '{function_name}' not found.")
+except ModuleNotFoundError:
+    print(f"Error: Module '{module_name}' not found.")
+except Exception as e:
+    print(f"Error: {e}")
+```
+
 
 ### 5. Optimize Import Time
 
@@ -482,6 +500,7 @@ print(f"Import time: {end - start}")
 2. Write a `setup.py` to make it installable.
 3. Install your package locally.
 4. Import and test your package.
+
 
 ### 7. Investigate sys.path
 
@@ -510,7 +529,21 @@ Investigate modules that run code at import time. Create a module that prints so
 ```python
 print("This runs on import!")
 ```
+Answer:
+1. Create a file named mymodule.py
+```python
+print("This runs on import!")
 
+def greet():
+    return "Hello from mymodule!"
+```
+2. Import the Module and Observe-(main.py)
+```python
+import mymodule
+print("Module imported successfully!")
+print(mymodule.greet())
+
+```
 ### 10. Investigate Python’s Import Caching
 
 Explore `sys.modules` to understand how Python caches imports and how to reload modules.
@@ -520,7 +553,20 @@ import sys
 import mymodule
 print(sys.modules['mymodule'])
 ```
+Answer:
+1. Create a module name mymodule.py:
+```python 
+def greet():
+    return "Hello from mymodule!"
+```
+2. In the main.py
+```python
+import sys
+import mymodule
+print(sys.modules['mymodule'])  # Prints the cached module object
+print(mymodule.greet())         # Output: Hello from mymodule!
 
+```
 #### Additional Resources:
 
 - [Official Python Documentation](https://docs.python.org/3/tutorial/modules.html)
