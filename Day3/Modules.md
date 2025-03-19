@@ -167,12 +167,31 @@ Modular programming is a software design technique that emphasizes breaking a pr
 Implementing Modular programming in python:
 
     - Using function,Package,Modules.
-    
+
 - Practice importing modules in multiple ways.
-
 - Explore the Python Standard Library.
+```
+The Python Standard Library is a collection of built-in modules that provide ready-to-use functionalities, eliminating the need to install external packages. These modules cover file handling, math operations, networking, data manipulation, debugging, and much more.
+1. OS module (Operating System Interactions)
+2. Sys module(System-Specific Parameters & Functions)
+3. Math Module (Mathematical Functions)
+4. Random Module (Generating Random Numbers) 
+5. Datetime Module (Working with Dates & Time)
+6. JSON Module (Handling JSON Data)
+7. Collections Module (Advanced Data Structures)
+8. Re module(Regular Expression)
+9. Statistics Module (Statistical Calculations)
+```
 - Understand namespace management and circular imports.
-
+```
+A namespace in Python is a mapping between variable names and objects. It ensures that variable names do not conflict with each other.
+Types of Namespaces---------
+Python maintains different types of namespaces:
+Local-	Variables inside a function (valid only within that function).
+Enclosing Variables -in enclosing functions (for nested functions).
+Global	Variables - defined at the module level, accessible throughout the script.
+Built-in- Names from Python’s built-in functions and modules (e.g., print(), len()).
+```
 ---
 
 ## 4.2. Modules
@@ -373,7 +392,40 @@ Enter function name: sqrt
 Enter argument: 25
 Output: 5.0
 ```
+Answer:
 
+```python
+import importlib
+def dynamic_function_call():
+    try:
+        module_name = input("Enter module name: ").strip()
+        function_name = input("Enter function name: ").strip()
+        argument = input("Enter argument: ").strip()
+        module = importlib.import_module(module_name)
+        function = getattr(module, function_name, None)
+
+        if function is None:
+            print(f"Error: Function '{function_name}' not found in module '{module_name}'.")
+            return
+        if argument.isdigit():
+            argument = int(argument)
+        else:
+            try:
+                argument = float(argument)
+            except ValueError:
+                print("Error: Invalid argument type.")
+                return
+        result = function(argument)
+        print(f"Output: {result}")
+    except ModuleNotFoundError:
+        print(f"Error: Module '{module_name}' not found.")
+    except TypeError:
+        print("Error: Function argument mismatch.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+dynamic_function_call()
+
+```
 ### 3. Custom Module with Exception Handling
 
 Create a custom module `calculator.py` that handles division by zero and invalid inputs gracefully.
@@ -390,7 +442,20 @@ def divide(a, b):
 ```
 
 Import and use this module.
+```python
+import calculator.py
+a = input("Enter first number: ")
+b = input("Enter second number: ")
 
+try:
+    a = float(a)
+    b = float(b)
+    result = calculator.divide(a, b)
+    print("Result:", result)
+except ValueError:
+    print("Error: Invalid input. Please enter numbers.")
+
+```
 ### 4. Advanced Import Strategies
 
 Write a script that:
