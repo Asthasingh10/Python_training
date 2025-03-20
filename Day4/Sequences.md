@@ -411,13 +411,72 @@ numbers = [1, 2, 2, 3, 4, 4, 5, 1, 6]
 print(remove_duplicates(numbers))  # Output: [1, 2, 3, 4, 5, 6]
 ```
 21. Write a function that takes a list of tuples and sorts it by the second element of each tuple.
+```
+def sort_by_second_element(lst):
+    return sorted(lst, key=lambda x: x[1])
+
+# Example usage
+tuples_list = [(1, 3), (4, 1), (2, 5), (6, 2)]
+print(sort_by_second_element(tuples_list))
+```
 
 22. Implement a program to flatten a nested list of arbitrary depth.
-23. Create a function that rotates a list to the right by k steps.
-24. Given two strings, write a function that returns True if they are anagrams.
-25. Create a function to split a list into chunks of a specified size.
-26. Implement a function that merges two sorted lists into one sorted list.
+```
+def flatten_list(nested_list):
+    flat_list = []
+    for item in nested_list:
+        if isinstance(item, list):  # Check if the item is a list
+            flat_list.extend(flatten_list(item))  # Recursively flatten
+        else:
+            flat_list.append(item)  # Append non-list items
+    return flat_list
 
+# Example usage
+nested_list = [1, [2, [3, 4], 5], [6, 7], 8]
+print(flatten_list(nested_list))
+```
+23. Create a function that rotates a list to the right by k steps.
+```
+def rotate_list(lst, k):
+    k = k % len(lst)  # Handle cases where k is greater than list length
+    return lst[-k:] + lst[:-k]  # Slice and concatenate
+
+# Example usage
+numbers = [1, 2, 3, 4, 5]
+k = 2
+print(rotate_list(numbers, k))  # Output: [4, 5, 1, 2, 3]
+
+```
+24. Given two strings, write a function that returns True if they are anagrams.
+```
+def are_anagrams(str1, str2):
+    return sorted(str1) == sorted(str2)  # Sort and compare
+
+# Example usage
+print(are_anagrams("listen", "silent"))  # Output: True
+print(are_anagrams("hello", "world"))    # Output: False
+```
+25. Create a function to split a list into chunks of a specified size.
+```
+def split_into_chunks(lst, chunk_size):
+    return [lst[i:i + chunk_size] for i in range(0, len(lst), chunk_size)]
+
+# Example usage
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+chunk_size = 3
+print(split_into_chunks(numbers, chunk_size))
+
+```
+26. Implement a function that merges two sorted lists into one sorted list.
+```
+def merge_sorted_lists(list1, list2):
+    return sorted(list1 + list2)  # Merge and sort
+
+# Example usage
+list1 = [1, 3, 5, 7]
+list2 = [2, 4, 6, 8]
+print(merge_sorted_lists(list1, list2))  # Output: [1, 2, 3, 4, 5, 6, 7, 8]
+```
 # 🚀 Questions on Sequences in Python
 
 1. **Data Pipeline Validator**
