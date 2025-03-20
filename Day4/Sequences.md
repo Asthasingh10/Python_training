@@ -12,8 +12,22 @@ In Python, a **sequence** is an ordered collection of items. The order of elemen
 
 - Understand different types of sequences.
 - Learn how to manipulate sequences.
+```
+1. Accessing Elements
+Python allows accessing elements of a sequence using indexing.
+2. Slicing a Sequence
+Slicing extracts a portion of a sequence.
 - Perform operations like slicing, concatenation, and repetition.
-
+3. Modifying Sequences
+Lists are mutable, meaning you can change their elements.
+4. Adding and Removing Elements
+5. Iterating Over a Sequence
+Using a loop to iterate over elements.
+6. List Comprehension
+A concise way to create and modify lists.
+7. Sorting and Reversing
+8. Unpacking Sequences
+```
 ### 5.1.2 Objectives
 
 - Identify and use strings, lists, and tuples.
@@ -188,26 +202,216 @@ sentence = ' '.join(words)  # 'Python is awesome'
 ## Assignment Questions
 
 1. Define a sequence. What types of sequences exist in Python?
+Answer:
+```
+A sequence in Python is an ordered collection of elements where each element is assigned a unique position (index). Sequences allow indexing, slicing, and iteration over their elements.
+Types of Sequences in Python -
+Python provides several built-in sequence types:
+1. Immutable Sequences (Cannot be changed after creation)
+- Strings (str)
+- Tuples (tuple)
+- Range (range)
+2. Mutable Sequences (Can be modified after creation)
+- Lists (list)
+- Byte Arrays (bytearray)
+```
 2. How are strings, lists, and tuples different from each other?
+Answer:
+```
+ 1. Strings (str) - Immutable
+- A sequence of characters.
+- Cannot be modified after creation.
+- Can be concatenated, sliced, and indexed.
+2. Lists (list) - Mutable
+- Ordered collection of elements.
+- Can store different data types.
+- Can be modified (adding, removing, or changing elements).
+3. Tuples (tuple) - Immutable
+- Ordered collection of elements like a list.
+- Cannot be modified after creation (Immutable).
+- Used when data should not change.
+```
 3. Explain how indexing works in Python with an example.
+```
+Indexing is the process of accessing elements in a sequence (such as strings, lists, and tuples) using their position.
+Python uses zero-based indexing, meaning the first element has an index of 0, the second has an index of 1, and so on.
+Negative indexing allows access from the end, where -1 refers to the last element, -2 refers to the second-last, etc.Example:
+# String indexing
+text = "Python"
+print(text[0])   # Output: 'P'  (First character)
+print(text[-1])  # Output: 'n'  (Last character)
+
+# List indexing
+fruits = ["apple", "banana", "cherry"]
+print(fruits[1])   # Output: 'banana'
+print(fruits[-2])  # Output: 'banana'
+
+# Tuple indexing
+numbers = (10, 20, 30, 40)
+print(numbers[2])   # Output: 30
+print(numbers[-1])  # Output: 40
+```
 4. Write code to access the last character of a string.
+```
+Accessing the Last Character of a String in Python: You can access the last character of a string using negative indexing (-1) or by calculating the length of the string.Example:
+text = "Python"
+last_char = text[-1]  # Accessing the last character
+print(last_char)  # Output: 'n'
+```
 5. Create a list of numbers and access the third element.
+```
+You can access the third element of a list using zero-based indexing (index = 2).
+```
 6. What is the result of `len([1, [2, 3], 4])` and why?
+```
+The len() function counts the number of top-level elements in the list.The output is 3.
+```
 7. Explain slicing with a practical example.
+```
+Slicing is used to extract a portion of a sequence (string, list, or tuple) using the syntax:
+sequence[start:stop:step]
+start → The index where slicing begins (default = 0).
+stop → The index where slicing ends (not included in the result).
+step → The interval between elements (default = 1).
+```
 8. How would you reverse a string using slicing?
+```
+text = "Python"
+# Reverse the string using slicing
+reversed_text = text[::-1]
+print(reversed_text)  # Output: "nohtyP"
+
+```
 9. Demonstrate list concatenation and repetition with examples.
+```
+Lists in Python support concatenation (+) and repetition (*) for combining and repeating elements.
+Example:
+1. list1 = [1, 2, 3]
+list2 = [4, 5, 6]
+# Concatenating two lists
+result = list1 + list2
+print(result)  # Output: [1, 2, 3, 4, 5, 6]
+
+2. nums = [7, 8, 9]
+# Repeating the list 3 times
+repeated_list = nums * 3
+print(repeated_list)  # Output: [7, 8, 9, 7, 8, 9, 7, 8, 9]
+
+```
 10. Write code to count the occurrences of an element in a list.
+```
+numbers = [1, 2, 3, 2, 4, 2, 5, 2]
+# Count occurrences of 2
+count_2 = numbers.count(2)
+print("Count of 2:", count_2)  # Output: Count of 2: 4
+
+```
 11. What will `my_tuple = (1, 2, 3); print(my_tuple[1:])` output?
+```
+Output:(2, 3)
+```
 12. Explain the difference between `list.append()` and `list.extend()`.
+```
+1️⃣ list.append(x) → Adds an element as a single item
+Appends the entire element (including lists, tuples, etc.) as a single entity.
+✅ Use append() when you want to add a single element (e.g., another list, tuple, or object).
+✅ Use extend() when you want to merge elements from another iterable.
+```
 13. Write code to split the sentence: "Learn Python, step by step!" into words.
+```
+sentence = "Learn Python, step by step!"
+words = sentence.split()  # Splits based on spaces by default
+print(words)
+
+```
 14. Join a list `['Python', 'is', 'fun']` into a single string.
+```
+words = ['Python', 'is', 'fun']
+sentence = " ".join(words)  # Joins elements with a space
+print(sentence)
+```
 15. Given a list `numbers = [1, 2, 2, 3, 4, 2]`, find the index of the first `2`.
+```
+numbers = [1, 2, 2, 3, 4, 2]
+first_index = numbers.index(2)  # Finds the index of the first '2'
+print("Index of first 2:", first_index)
+
+```
 16. Write code to check if a string is a palindrome.
+```
+def is_palindrome(s):
+    s = s.lower().replace(" ", "")  # Convert to lowercase and remove spaces
+    return s == s[::-1]  # Compare string with its reverse
+
+# Example usage
+string = input("Enter a string: ")
+if is_palindrome(string):
+    print("The string is a palindrome.")
+else:
+    print("The string is not a palindrome.")
+```
 17. Implement a function that returns the length of the longest word in a sentence.
+```
+def longest_word_length(sentence):
+    words = sentence.split()  # Split sentence into words
+    if not words:
+        return 0  # Return 0 if the sentence is empty
+    return max(len(word) for word in words)  # Find the max word length
+
+# Example usage
+sentence = input("Enter a sentence: ")
+print("Length of the longest word:", longest_word_length(sentence))
+```
 18. Demonstrate nested list indexing.
+```
+Nested lists in Python are lists within lists. You can access elements using multiple indices.
+
+# Creating a nested list
+nested_list = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+# Accessing elements
+print(nested_list[0][0])  # Output: 1 (First row, first column)
+print(nested_list[1][2])  # Output: 6 (Second row, third column)
+print(nested_list[2][1])  # Output: 8 (Third row, second column)
+
+# Modifying an element
+nested_list[1][1] = 50
+print(nested_list)  # Updated list
+
+```
 19. How do you convert a list of characters into a string?
+```
+# List of characters
+char_list = ['H', 'e', 'l', 'l', 'o']
+
+# Convert to string
+result = ''.join(char_list)
+
+# Output the result
+print(result)  # Output: Hello
+
+```
 20. Write code to remove duplicates from a list while preserving order.
+```
+def remove_duplicates(lst):
+    seen = set()
+    result = []
+    for item in lst:
+        if item not in seen:
+            seen.add(item)
+            result.append(item)
+    return result
+
+# Example usage
+numbers = [1, 2, 2, 3, 4, 4, 5, 1, 6]
+print(remove_duplicates(numbers))  # Output: [1, 2, 3, 4, 5, 6]
+```
 21. Write a function that takes a list of tuples and sorts it by the second element of each tuple.
+
 22. Implement a program to flatten a nested list of arbitrary depth.
 23. Create a function that rotates a list to the right by k steps.
 24. Given two strings, write a function that returns True if they are anagrams.
