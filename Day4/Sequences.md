@@ -497,6 +497,31 @@ print(merge_sorted_lists(list1, list2))  # Output: [1, 2, 3, 4, 5, 6, 7, 8]
      Longest Pipeline: Model Training
      Pipelines exceeding threshold: ['Preprocessing', 'Model Training']
      ```
+ Answer:
+ ```python
+ def validate_pipelines(pipelines, threshold):
+   
+    # Find the longest pipeline
+    longest_pipeline = max(pipelines, key=lambda x: x[1])[0]
+
+    # Find pipelines exceeding the threshold
+    exceeding_pipelines = [name for name, time in pipelines if time > threshold]
+
+    print(f"Longest Pipeline: {longest_pipeline}")
+    print(f"Pipelines exceeding threshold: {exceeding_pipelines}")
+
+# Example usage
+pipelines = [
+    ("Data Ingestion", 30),
+    ("Preprocessing", 45),
+    ("Model Training", 120),
+    ("Evaluation", 20)
+]
+threshold = 40
+
+validate_pipelines(pipelines, threshold)
+
+ ```    
 
 2. **Log File Parser**
    - **Task**: Extract unique error codes from a log file.
@@ -512,7 +537,24 @@ print(merge_sorted_lists(list1, list2))  # Output: [1, 2, 3, 4, 5, 6, 7, 8]
      ```
      Unique Error Codes: ['404', '500']
      ```
+```python
+import re
 
+def extract_error_codes(logs):
+    # Use regex to find all error codes (digits after "ERROR ")
+    error_codes = set(re.findall(r"ERROR (\d+)", logs))
+    
+    print(f"Unique Error Codes: {sorted(error_codes)}")  # Sort for consistency
+
+# Example usage
+logs = """ERROR 404: Not Found
+INFO: Connection established
+ERROR 500: Internal Server Error
+ERROR 404: Not Found
+"""
+
+extract_error_codes(logs)
+```
 ---
 
 ## 5.2. Strings, Lists, and Tuples
@@ -528,6 +570,16 @@ print(merge_sorted_lists(list1, list2))  # Output: [1, 2, 3, 4, 5, 6, 7, 8]
      ```
      [('host', '127.0.0.1'), ('port', '8080'), ('mode', 'debug')]
      ```
+Answer:
+```python
+def parse_config(config):
+    return [tuple(pair.split('=')) for pair in config.split(';')]
+
+# Example usage
+config = "host=127.0.0.1;port=8080;mode=debug"
+print(parse_config(config))
+
+```
 
 4. **Social Media Data Cleaner**
    - **Task**: Extract unique hashtags from a social media post.
@@ -539,7 +591,18 @@ print(merge_sorted_lists(list1, list2))  # Output: [1, 2, 3, 4, 5, 6, 7, 8]
      ```
      ['#Python', '#Coding', '#Learning']
      ```
+Answer:
+```python
+import re
 
+def extract_hashtags(post):
+    hashtags = re.findall(r'#\w+', post) 
+    return list(set(hashtags))  
+
+post = "Loving the new #Python course!
+print(extract_hashtags(post))
+
+```
 ---
 
 ## 5.3. Index Operator: Working with Characters
@@ -555,7 +618,14 @@ print(merge_sorted_lists(list1, list2))  # Output: [1, 2, 3, 4, 5, 6, 7, 8]
      ```
      'hello world'
      ```
+```python
+def decode_secret(secret_message):
+    return secret_message[::3]  
+secret_message = "hweollrolwd"
+decoded_message = decode_secret(secret_message)
+print(decoded_message)  # Output: 'horw'
 
+```
 6. **Inventory Tracker**
    - **Task**: Find the product with the highest quantity.
    - **Input**:
@@ -570,6 +640,17 @@ print(merge_sorted_lists(list1, list2))  # Output: [1, 2, 3, 4, 5, 6, 7, 8]
      ```
      'Oranges'
      ```
+
+```python
+def highestQty(inventory):
+  return max(inventory,key=lambda x:x[1])[0]
+inventory = [
+    ("Apples", 50),
+    ("Oranges", 75),
+    ("Bananas", 30)
+]
+print(highestQty(inventory))
+```
 
 ---
 
@@ -586,6 +667,14 @@ print(merge_sorted_lists(list1, list2))  # Output: [1, 2, 3, 4, 5, 6, 7, 8]
      ```
      Max Score: 5, Min Score: 1
      ```
+```python
+def analyze_survey(survey_data):
+    scores = list(map(int, survey_data.split(",")))  
+    print(f"Max Score: {max(scores)}, Min Score: {min(scores)}")  
+
+survey_data = "5,3,4,1,2"
+analyze_survey(survey_data)
+```
 
 8. **Access Control Manager**
    - **Task**: Manage user access levels using lists and tuples.
@@ -598,7 +687,16 @@ print(merge_sorted_lists(list1, list2))  # Output: [1, 2, 3, 4, 5, 6, 7, 8]
      ```
      Alice: Admin, Bob: Editor, Charlie: Viewer
      ```
-
+Answer:
+```python
+def manage_access(users, roles):
+    access_list = zip(users, roles)  
+    for user, role in access_list:
+        print(f"{user}: {role}") 
+users = ["Alice", "Bob", "Charlie"]
+roles = ("Admin", "Editor", "Viewer")
+manage_access(users, roles)
+```
 ---
 
 ## 5.5. Length
@@ -614,7 +712,20 @@ print(merge_sorted_lists(list1, list2))  # Output: [1, 2, 3, 4, 5, 6, 7, 8]
      ```
      Category: Medium
      ```
-
+```python
+def categorize_ticket(message):
+    length = len(message)
+    if length < 20:
+        category = "Short"
+    elif 20 <= length <= 50:
+        category = "Medium"
+    else:
+        category = "Long"
+    
+    print(f"Category: {category}")
+message = "My account is locked, please help!"
+categorize_ticket(message)
+```
 10. **Product Catalog Manager**
 
 - **Task**: Find the product with the longest name.
@@ -626,7 +737,12 @@ print(merge_sorted_lists(list1, list2))  # Output: [1, 2, 3, 4, 5, 6, 7, 8]
   ```
   'Wireless Headphones'
   ```
-
+```python
+def longest_name(products):
+  return max(products,key=lambda x:x[0])
+products = ["Laptop", "Smartphone", "Wireless Headphones"]
+longest_name(products)
+```
 ---
 
 ## 5.6. The Slice Operator
@@ -642,7 +758,14 @@ print(merge_sorted_lists(list1, list2))  # Output: [1, 2, 3, 4, 5, 6, 7, 8]
   ```
   Average: 22
   ```
-
+```python
+def last_ten_avg(sensor_readings):
+   last_10_readings = readings[-10:] 
+   avg = sum(last_10_readings) // len(last_10_readings)
+   print(f"Average: {avg}")
+sensor_readings = [12, 15, 14, 16, 20, 22, 21, 23, 25, 30, 28, 27]
+average_last_10(sensor_readings)
+```
 12. **Transaction Reverser**
 
 - **Task**: Reverse the list of transactions.
@@ -654,6 +777,10 @@ print(merge_sorted_lists(list1, list2))  # Output: [1, 2, 3, 4, 5, 6, 7, 8]
   ```
   [50, -150, 200, -50, 100]
   ```
+```python
+transactions = [100, -50, 200, -150, 50]
+print(transactions[::-1])
+```
 
 ---
 
@@ -671,7 +798,16 @@ print(merge_sorted_lists(list1, list2))  # Output: [1, 2, 3, 4, 5, 6, 7, 8]
   ```
   ['2025-03-20: System Boot', '2025-03-20: Network Connected', '2025-03-20: User Login']
   ```
+```python
+def format_logs(logs, timestamp):
+    return [f"{timestamp}: {log}" for log in logs]  
+logs = ["System Boot", "Network Connected", "User Login"]
+timestamp = "2025-03-20"
 
+formatted_logs = format_logs(logs, timestamp)
+print(formatted_logs)
+
+```
 14. **Pattern Generator**
 
 - **Task**: Generate patterns with repetition.
@@ -684,7 +820,16 @@ print(merge_sorted_lists(list1, list2))  # Output: [1, 2, 3, 4, 5, 6, 7, 8]
   ```
   '* * * * *'
   ```
+```python
+def generate_pattern(symbol, count):
+    return ' '.join([symbol] * count)
+symbol = "*"
+count = 5
 
+pattern = generate_pattern(symbol, count)
+print(pattern)
+
+```
 ---
 
 ## 5.8. Count and Index
@@ -700,6 +845,14 @@ print(merge_sorted_lists(list1, list2))  # Output: [1, 2, 3, 4, 5, 6, 7, 8]
   ```
   'excellent' count: 2
   ```
+ ```python
+ def count_keyword(feedback, keyword):
+    count = feedback.lower().split().count(keyword.lower()) 
+    print(f"'{keyword}' count: {count}")
+feedback = "The product is excellent, absolutely excellent!"
+keyword = "excellent"
+count_keyword(feedback, keyword)
+ ``` 
 
 16. **Sentence Index Finder**
 
@@ -712,7 +865,13 @@ print(merge_sorted_lists(list1, list2))  # Output: [1, 2, 3, 4, 5, 6, 7, 8]
   ```
   Index: 21
   ```
-
+```python
+  def first_occ(word,log):
+    return log.lower().index(word.lower())-1
+  log = "INFO: All systems go. ERROR: Failed to start service."
+  word="error"
+  print(first_occ(word,log))
+```
 ---
 
 ## 5.9. Splitting and Joining Strings
@@ -728,7 +887,12 @@ print(merge_sorted_lists(list1, list2))  # Output: [1, 2, 3, 4, 5, 6, 7, 8]
   ```
   [['Alice', '25', 'Engineer'], ['Bob', '30', 'Doctor'], ['Charlie', '22', 'Artist']]
   ```
-
+```python
+def csv_to_list(csv_data):
+    return [row.split(",") for row in csv_data.split("\n")]
+csv_data = "Alice,25,Engineer\nBob,30,Doctor\nCharlie,22,Artist"
+print(csv_to_list(csv_data))
+```
 18. **Username Generator**
 
 - **Task**: Generate usernames from full names.
@@ -740,7 +904,13 @@ print(merge_sorted_lists(list1, list2))  # Output: [1, 2, 3, 4, 5, 6, 7, 8]
   ```
   ['AWonderland', 'BBuilder', 'CChaplin']
   ```
-
+```python
+def generate_usernames(names):
+    return [f"{name.split()[0][0]}{name.split()[1]}" for name in names] 
+names = ["Alice Wonderland", "Bob Builder", "Charlie Chaplin"]
+usernames = generate_usernames(names)
+print(usernames)
+```
 ---
 
 ## Bonus Advanced Problems
@@ -761,6 +931,22 @@ print(merge_sorted_lists(list1, list2))  # Output: [1, 2, 3, 4, 5, 6, 7, 8]
   ```
   Alice: 2 messages, Bob: 2 messages
   ```
+```python
+from collections import Counter
+def count_messages(chat_logs):
+    message_counts = Counter(log.split(":")[0] for log in chat_logs)  
+    return ", ".join(f"{user}: {count} messages" for user, count in message_counts.items())
+chat_logs = [
+    "Alice: Hi!",
+    "Bob: Hello!",
+    "Alice: How are you?",
+    "Bob: I’m good, thanks!"
+]
+
+result = count_messages(chat_logs)
+print(result)
+
+```
 
 20. **Data Compressor**
 
@@ -773,5 +959,15 @@ print(merge_sorted_lists(list1, list2))  # Output: [1, 2, 3, 4, 5, 6, 7, 8]
   ```
   'ab' repeated 6 times
   ```
-
+```python
+def compress_data(data):
+    for i in range(1, len(data) // 2 + 1):  
+        substring = data[:i] 
+        if data == substring * (len(data) // len(substring)): 
+            return f"'{substring}' repeated {len(data) // len(substring)} times"
+    return "No repeating pattern found"
+data = "abababababab"
+result = compress_data(data)
+print(result)
+```
 ---
