@@ -64,10 +64,10 @@ print(type(z))  # Output: <class 'float'>
 ### Properly name variables following Python conventions-
 - Use letters (a-z, A-Z), digits (0-9), and underscores (_) only.
 
-python
+```python
 valid_name = "Astha"
 age_21 = 21
-
+```
 - Must start with a letter or an underscore (_), but not a digit.
 
 ```python

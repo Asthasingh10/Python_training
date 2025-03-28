@@ -218,7 +218,7 @@ Python provides several built-in sequence types:
 2. How are strings, lists, and tuples different from each other?
 Answer:
 ```
- 1. Strings (str) - Immutable
+1. Strings (str) - Immutable
 - A sequence of characters.
 - Cannot be modified after creation.
 - Can be concatenated, sliced, and indexed.
@@ -356,7 +356,7 @@ def longest_word_length(sentence):
     words = sentence.split()  # Split sentence into words
     if not words:
         return 0  # Return 0 if the sentence is empty
-    return max(len(word) for word in words)  # Find the max word length
+    return max(len(word) for word in words) 
 
 # Example usage
 sentence = input("Enter a sentence: ")

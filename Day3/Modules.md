@@ -8,7 +8,7 @@ By the end of this module, students should be able to:
 
 - Understand the purpose and importance of modules in Python.
 ```
-A module in Python is a file containing Python code (functions, classes, and variables) that can be reused in different programs. It allows for better code organization, reusability, and maintainability.
+A module in Python is a file containing Python code (functions, classes, and variables) that can be reused in different programs. It allows for better code     organization, reusability, and maintainability.
 A module can be:
 - A built-in module (e.g., math, os, sys)
 - A user-defined module (a .py file with reusable code)

@@ -269,7 +269,7 @@ for t in threads:
 for t in threads:
     t.join()
 
-print("Counter:", counter)  # Expected: 200000
+print("Counter:", counter)  #Expected:200000
 ```
 
 ### 7. Activity: Debug with Breakpoints
