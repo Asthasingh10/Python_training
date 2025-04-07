@@ -227,7 +227,7 @@ turtle.done()
 
 ### **1. Employee Attendance Tracker**
 
-- Implement a system that tracks employee attendance.
+- ImplemenCt a system that tracks employee attendance.
 - Use loops to process multiple employees and conditionals to check attendance.
 - Mark employees as "Needs Attention" if absent for more than 3 consecutive days.
 
