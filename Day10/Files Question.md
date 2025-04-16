@@ -121,27 +121,66 @@ with open('reversed_quotes.txt', 'w') as outfile:
 ## 💡 **Advanced-Level Questions / Mini Projects**
 
 11. **Log File Analyzer**
-
     - Read a `server.log` file, count how many times the word `"ERROR"` appears, and write all lines with errors to `errors_only.log`.
+
 ```python
+with open('server.log', 'r') as infile, open('errors_only.log', 'w') as outfile:
+    error_count = 0
+    for line in infile:
+        if 'ERROR' in line:
+            outfile.write(line)
+            error_count += 1
+    print(f'Total errors: {error_count}')
 
 ```
 
 12. **Word Frequency Counter**
 
     - Read `story.txt` and create a dictionary of word frequency (how many times each word appears), and write it to `frequency.txt`.
+```python
+from collections import Counter
+with open('story.txt', 'r') as infile:
+    words = infile.read().split()
 
+word_count = Counter(words)
+
+with open('frequency.txt', 'w') as outfile:
+    for word, count in word_count.items():
+        outfile.write(f'{word}: {count}\n')
+
+```
 13. **CSV Reader + Filter**
 
     - Read `sales.csv`, display all sales above ₹10,000 and write those entries to `high_sales.csv`.
+```python
+import csv
+with open('sales.csv', 'r') as infile, open('high_sales.csv', 'w', newline='') as outfile:
+    reader = csv.reader(infile)
+    writer = csv.writer(outfile)
+    for row in reader:
+        if float(row[1]) > 10000: 
+            writer.writerow(row)
 
+```
 14. **Merge Multiple Files**
 
     - Combine the contents of `chapter1.txt`, `chapter2.txt`, and `chapter3.txt` into `full_book.txt`.
 
+```python
+with open('full_book.txt', 'w') as outfile:
+    for filename in ['chapter1.txt', 'chapter2.txt', 'chapter3.txt']:
+        with open(filename, 'r') as infile:
+            outfile.write(infile.read())
+```
 15. **Directory File Scanner**
     - List all `.txt` or `.csv` files in a given folder using `os.listdir()` and `os.path`.
+```python
+import os
+folder = '/path/to/folder'
+files = [f for f in os.listdir(folder) if f.endswith('.txt') or f.endswith('.csv')]
+print(files)
 
+```
 ---
 
 ## 🚀 **Bonus Challenges**
@@ -153,7 +192,7 @@ with open('reversed_quotes.txt', 'w') as outfile:
 import shutil
 from datetime import datetime
 current_date = datetime.now().strftime('%Y-%m-%d')
-shutil.copy('data.csv', f'backup/data_backup_{current_date}.csv')
+shutil.copy('data.csv', f'bacup/data_backup_{current_date}.csv')
 ```
 
 17. **Text Formatter**
