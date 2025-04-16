@@ -123,6 +123,9 @@ with open('reversed_quotes.txt', 'w') as outfile:
 11. **Log File Analyzer**
 
     - Read a `server.log` file, count how many times the word `"ERROR"` appears, and write all lines with errors to `errors_only.log`.
+```python
+
+```
 
 12. **Word Frequency Counter**
 
@@ -146,20 +149,64 @@ with open('reversed_quotes.txt', 'w') as outfile:
 16. **Auto Backup System**
 
     - Copy the contents of `data.csv` into `backup/data_backup.csv` with the current date in the filename.
+```python
+import shutil
+from datetime import datetime
+current_date = datetime.now().strftime('%Y-%m-%d')
+shutil.copy('data.csv', f'backup/data_backup_{current_date}.csv')
+```
 
 17. **Text Formatter**
-
     - Remove leading/trailing spaces and convert tabs to spaces in `raw_text.txt`.
 
+```python
+with open('raw_text.txt', 'r') as infile, open('formatted_text.txt', 'w') as outfile:
+    for line in infile:
+        formatted_line = line.strip().replace('\t', '    ')
+        outfile.write(formatted_line + '\n')
+```
+
+
 18. **Chat History Logger**
-
     - Build a basic chat logger: take user input until “exit” and save all messages with timestamps to `chat_log.txt`.
+```python
+from datetime import datetime
+with open('chat_log.txt', 'a') as file:
+    while True:
+        message = input("You: ")
+        if message.lower() == "exit":
+            break
+        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        file.write(f'{timestamp} - You: {message}\n')
 
+```
 19. **Custom CSV Sorter**
 
     - Read `products.csv` and sort by price (ascending). Write the sorted records to `products_sorted.csv`.
+```python
+import csv
+with open('products.csv', 'r') as infile:
+    reader = csv.DictReader(infile)
+    sorted_products = sorted(reader, key=lambda row: float(row['price']))
 
+with open('products_sorted.csv', 'w', newline='') as outfile:
+    writer = csv.DictWriter(outfile, fieldnames=['product', 'price'])
+    writer.writeheader()
+    writer.writerows(sorted_products)
+
+```
 20. **JSON Converter**
     - Read `students.txt` with comma-separated values, convert it to a list of dictionaries, and write to `students.json`.
+```python
+import json
+with open('students.txt', 'r') as infile:
+    students = []
+    for line in infile:
+        name, marks = line.strip().split(',')
+        students.append({'name': name, 'marks': int(marks)})
+
+with open('students.json', 'w') as outfile:
+    json.dump(students, outfile, indent=4)
+```
 
 ---
