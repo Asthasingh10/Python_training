@@ -176,7 +176,7 @@ with open('full_book.txt', 'w') as outfile:
     - List all `.txt` or `.csv` files in a given folder using `os.listdir()` and `os.path`.
 ```python
 import os
-folder = '/path/to/folder'
+folder = './Day10'
 files = [f for f in os.listdir(folder) if f.endswith('.txt') or f.endswith('.csv')]
 print(files)
 
