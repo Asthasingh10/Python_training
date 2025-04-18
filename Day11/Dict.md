@@ -5,18 +5,123 @@
 #### 10.1.1. Learning Goals
 
 - Understand what dictionaries are and how they differ from other data structures.
+```
+A dictionary is a collection of key-value pairs. Each key is unique, and it maps to a value. Example:
+student = {
+    "name": "Astha",
+    "age": 21,
+    "course": "B.Tech CSE"
+}
+```
+| Feature             | Dictionary                         | List/Array                     | Set                             | Tuple                          |
+|---------------------|-------------------------------------|--------------------------------|----------------------------------|--------------------------------|
+| **Structure**        | Key-value pairs                     | Ordered collection of items    | Unordered unique items           | Ordered, immutable items       |
+| **Access by**        | Key                                | Index                          | Can't access by index            | Index                          |
+| **Order** (Python 3.7+)| Maintains insertion order         | Maintains order                | Does **not** maintain order      | Maintains order                |
+| **Mutability**       | Mutable                            | Mutable                        | Mutable                          | **Immutable**                  |
+| **Duplicates**       | Keys must be unique                | Allows duplicates              | Does **not** allow duplicates    | Allows duplicates              |
+
+
 - Learn how to create, modify, and access data in dictionaries.
+```
+Create: my_dict = {"brand": "Ford", "model": "Mustang"}
+Modify: my_dict["model"] = "Figo"
+Access: print(my_dict["brand"])  # Ford
+You can also use .get() to avoid errors if the key doesn’t exist: 
+>> print(my_dict.get("year", "Not Available"))  # Not Available
+``` 
 - Master dictionary operations and advanced patterns such as accumulation.
+```
+Common operations:
+dict.keys(), dict.values(), dict.items()
+
+Adding or removing keys using del, .pop(), .update()
+
+Looping through dictionaries:
+for key, value in my_dict.items():
+    print(key, value)
+
+Accumulation pattern:
+Used for tasks like counting occurrences. Example: Count how many times each word appears:
+
+text = "apple banana apple orange"
+counter = {}
+for word in text.split():
+    counter[word] = counter.get(word, 0) + 1
+print(counter)  # {'apple': 2, 'banana': 1, 'orange': 1}
+
+```
 - Learn when and why dictionaries should be used in real-world scenarios.
+```
+Dictionaries are ideal when:
+- You need fast lookups (like a contact book).
+- Data is labeled (like JSON or API responses).
+- You want to build mappings or counters.
+
+Real-world examples:
+- Storing user profiles (user["email"])
+- Counting votes or word frequency
+- Representing JSON-like data (APIs, configs) 
+```
 
 #### 10.1.2. Objectives
 
 - Define dictionaries and identify key-value pairs.
+```
+- A dictionary is a collection of key-value pairs, where each key is unique and maps to a value.
+- Think of it like a real-life dictionary: the word (key) maps to its meaning (value).
+ Example:
+person = {"name": "Astha", "age": 21, "city": "Mathura"}
+```
 - Perform insertions, deletions, updates, and lookups.
+```
+Insert: person["email"] = "astha@example.com"
+Update: person["age"] = 22
+Delete: del person["city"]
+LookUp: print(person["name"])  # Output: Astha
+Safe Lookup: print(person.get("city", "Not found"))  # Avoids error if key is missing
+```
 - Use dictionary methods to manipulate and traverse data.
-- Implement accumulation and aggregation tasks using dictionaries.
-- Understand dictionary copying and aliasing behavior.
+```
+Common methods:
 
+dict.keys() – returns all keys
+
+dict.values() – returns all values
+
+dict.items() – returns key-value pairs
+
+dict.update() – updates with another dictionary or key-value pairs
+
+dict.pop(key) – removes and returns the value for a key
+```
+- Implement accumulation and aggregation tasks using dictionaries.
+```
+Used to count or group data dynamically.
+
+words = ["apple", "banana", "apple", "orange"]
+counter = {}
+
+for word in words:
+    counter[word] = counter.get(word, 0) + 1
+
+print(counter)  # {'apple': 2, 'banana': 1, 'orange': 1}
+
+```
+- Understand dictionary copying and aliasing behavior.
+```
+- Aliasing (shared reference):
+a = {"x": 1}
+b = a
+b["x"] = 99
+print(a)  # {'x': 99} – a is also changed!
+
+- Proper copy (shallow):
+c = a.copy()
+c["x"] = 50
+print(a)  # Original remains unchanged
+
+```
 ---
 
 ### 10.2. Getting Started with Dictionaries
