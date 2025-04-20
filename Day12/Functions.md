@@ -374,19 +374,74 @@ print(average_marks([1,2,3]))
    - Number of words
    - Number of unique words
    - Frequency of each word
+```python
+def analyze_text(text: str):
+    words = text.split()
+    print("Number of words:", len(words))
+    print("Number of unique words:", len(set(words)))   
+    print("Frequency of each word:")
+    freq = {}
+    for word in words:
+        freq[word] = freq.get(word, 0) + 1
+    for word, count in freq.items():
+        print(f"{word}: {count}")
+
+analyze_text("astha loves coding and astha enjoys learning coding")
+
+```
 
 2. **Write a function `is_palindrome(s: str) -> bool` that checks if the input string is a palindrome. Ignore cases and spaces.**
+```python
+def is_palindrome(s:str)-> bool:
+    strings=s.lower();
+    if strings==strings[::-1]:
+        return True
+    else:
+        return False
+print(is_palindrome("adaa"))
+```
 
 3. **Implement `nested_sum(data: list) -> int` that takes a nested list of integers and returns the sum of all integers.**
-
    ```python
    nested_sum([[1, 2], [3, [4, 5]], 6])  # Output: 21
    ```
+```python
+def nested_sum(data: list) -> int:
+    total = 0
+    for element in data:
+        if isinstance(element, list):
+            total += nested_sum(element)  
+        else:
+            total += element 
+    return total
+print(nested_sum([[1, 2], [3, [4, 5]],7])) 
+```
 
 4. **Create a function `safe_divide(x: float, y: float) -> float` that handles divide-by-zero using try-except.**
+```python
+def safe_divide(x: float, y: float) -> float:
+    try:
+        return x / y
+    except ZeroDivisionError:
+        return 0.0
+print(safe_divide(10, 2))  # Output: 5.0
+print(safe_divide(10, 0))  # Output: 0.0
+```
 
 5. **Simulate a digital clock with a function `time_increment(h: int, m: int) -> tuple[int, int]` that returns the time after 1 minute. Handle boundary cases (e.g., 23:59).**
-
+```python
+def time_increment(h: int, m: int) -> tuple[int, int]:
+    m += 1
+    if m == 60:
+        m = 0
+        h += 1
+        if h == 24:
+            h = 0
+    return h, m
+print(time_increment(23, 59))  # Output: (0, 0)
+print(time_increment(12, 30))  # Output: (12, 31)
+print(time_increment(5, 59))   # Output: (6, 0)
+```
 ---
 
 ## 💻 Real-world Problem Set: Function Design and Architecture
