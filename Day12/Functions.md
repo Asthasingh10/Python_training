@@ -547,18 +547,51 @@ def print_report(expenses: list[float]) -> None:
     print(f"Highest Expense  : ₹{summary['highest']:.2f}")
     print(f"Average Expense  : ₹{summary['average']:.2f}")
     print(f"Transactions Made: {summary['transactions']}")
-
 ```
 
 4. Apply **function composition** to build `generate_report()` that internally calls the above functions.
 ```python
 
+transaction_count = 0
+
+def add_expense(expenses: list[float], amount: float) -> None:
+    global transaction_count
+    expenses.append(amount)
+    transaction_count += 1
+
+def total_expense(expenses: list[float]) -> float:
+    return sum(expenses)
+
+def highest_expense(expenses: list[float]) -> float:
+    return max(expenses) if expenses else 0.0
+
+def average_expense(expenses: list[float]) -> float:
+    return sum(expenses) / len(expenses) if expenses else 0.0
+
+def expense_summary(expenses: list[float]) -> dict[str, float]:
+    return {
+        'total': total_expense(expenses),
+        'highest': highest_expense(expenses),
+        'average': average_expense(expenses),
+        'transactions': transaction_count
+    }
+def generate_report(expenses: list[float]) -> None:
+    summary = expense_summary(expenses)
+    print(summary)
+expenses = []
+add_expense(expenses, 50.0)
+add_expense(expenses, 75.5)
+add_expense(expenses, 20.25)
+generate_report(expenses)
 ```
 ---
 
 ## 🧠 Conceptual Questions (Code + Theory)
 
 1. **What is the difference between returning a value and printing it? Illustrate with two functions.**
+
+
+
 2. **Explain with code how passing a mutable object (like a list) affects the original outside the function.**
 3. **Write a function where a global variable is modified and explain the risks involved.**
 4. **Demonstrate function composition by creating a calculator that computes `sqrt(x² + y²)` using helper functions.**
