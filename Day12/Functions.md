@@ -451,19 +451,109 @@ print(time_increment(5, 59))   # Output: (6, 0)
 ### **Personal Expense Tracker**
 
 1. Create the following functions:
-
    - `add_expense(expenses: list[float], amount: float) -> None`
    - `total_expense(expenses: list[float]) -> float`
    - `highest_expense(expenses: list[float]) -> float`
    - `average_expense(expenses: list[float]) -> float`
    - `expense_summary(expenses: list[float]) -> dict[str, float]`
+```python
+def add_expense(expenses:list[float],amount:float)-> None:
+            expenses.append(amount)
+def total_expense(expenses:list[float])-> float:
+            return sum(expenses)
+def highest_expense(expenses:list[float])-> float:
+            return max(expenses) if expenses else 0.0
+def average_expense(expenses:list[float])-> float:
+            return sum(expenses) / len(expenses) if expenses else 0.0
+def expense_summary(expenses:list[float])-> float:
+             return {
+                'total': total_expense(expenses),
+                'highest': highest_expense(expenses),
+                'average': average_expense(expenses)
+             }
+expenses = []
+add_expense(expenses, 50.0)
+add_expense(expenses, 75.5)
+add_expense(expenses, 20.25)
 
+print("Total Expense:", total_expense(expenses))        
+print("Highest Expense:", highest_expense(expenses))   
+print("Average Expense:", average_expense(expenses))   
+print("Expense Summary:", expense_summary(expenses))
+```
 2. Use `global` variable to maintain a transaction count across functions.
+```python
+transaction_count = 0
+def add_expense(expenses: list[float], amount: float) -> None:
+    global transaction_count
+    expenses.append(amount)
+    transaction_count += 1
+
+def total_expense(expenses: list[float]) -> float:
+    return sum(expenses)
+
+def highest_expense(expenses: list[float]) -> float:
+    return max(expenses) if expenses else 0.0
+
+def average_expense(expenses: list[float]) -> float:
+    return sum(expenses) / len(expenses) if expenses else 0.0
+
+def expense_summary(expenses: list[float]) -> dict[str, float]:
+    return {
+        'total': total_expense(expenses),
+        'highest': highest_expense(expenses),
+        'average': average_expense(expenses),
+        'transactions': transaction_count
+    }
+
+expenses = []
+add_expense(expenses, 50.0)
+add_expense(expenses, 75.5)
+add_expense(expenses, 20.25)
+print("Expense Summary:", expense_summary(expenses))
+```
 
 3. Add a function `print_report()` that **prints** the entire summary — this demonstrates **side effects vs return**.
+```python
+transaction_count = 0
+
+def add_expense(expenses: list[float], amount: float) -> None:
+    global transaction_count
+    expenses.append(amount)
+    transaction_count += 1
+
+def total_expense(expenses: list[float]) -> float:
+    return sum(expenses)
+
+def highest_expense(expenses: list[float]) -> float:
+    return max(expenses) if expenses else 0.0
+
+def average_expense(expenses: list[float]) -> float:
+    return sum(expenses) / len(expenses) if expenses else 0.0
+
+def expense_summary(expenses: list[float]) -> dict[str, float]:
+    return {
+        'total': total_expense(expenses),
+        'highest': highest_expense(expenses),
+        'average': average_expense(expenses),
+        'transactions': transaction_count
+    }
+
+def print_report(expenses: list[float]) -> None:
+    summary = expense_summary(expenses)
+    print("Expense Report")
+    print("--------------")
+    print(f"Total Expenses   : ₹{summary['total']:.2f}")
+    print(f"Highest Expense  : ₹{summary['highest']:.2f}")
+    print(f"Average Expense  : ₹{summary['average']:.2f}")
+    print(f"Transactions Made: {summary['transactions']}")
+
+```
 
 4. Apply **function composition** to build `generate_report()` that internally calls the above functions.
+```python
 
+```
 ---
 
 ## 🧠 Conceptual Questions (Code + Theory)
