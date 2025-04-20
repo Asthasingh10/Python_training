@@ -317,13 +317,52 @@ print(circle_area(1));
 
 1. **Define a function `sum_even(numbers: list[int]) -> int` that returns the sum of all even numbers in a list.**
 ```python
-
+def sum_even(numbers: list[int]) -> int:
+    return sum(num for num in numbers if num % 2 == 0)
+print(sum_even([1,2,3,4]));
 ```
 2. **Write a function `reverse_string(s: str) -> str` to return the reverse of a string.**
+```python
+def reverse_string(s:str)->str:
+    return s[::-1]
+print(reverse_string("astha"))
+```
 3. **Create a function `fibonacci(n: int) -> list[int]` that returns the first `n` Fibonacci numbers.**
+```python
+def fibonacci(n:int)-> list[int]:
+    if(n<=0):
+        return [];
+    elif(n==1):
+        return [0];
+    else:
+        fib=[0,1]
+        for _ in range(2,n):
+            fib.append(fib[-1]+fib[-2])
+        return fib
+print(fibonacci(7))
+```
 4. **Write a function `count_vowels(sentence: str) -> int` that counts and returns the number of vowels.**
-5. **Write a function `average_marks(marks: list[float]) -> float` that returns the average of marks.**
+```python
+def count_vowels(sentence:str)->int:
+    vowels=['a','e','i','o','u']
+    count=0;
+    for char in sentence:
+        if char in vowels:
+            count=count+1
+    return count;
+print(count_vowels("aeiou"));
+```
 
+5. **Write a function `average_marks(marks: list[float]) -> float` that returns the average of marks.**
+```python
+def average_marks(marks:list[float])->float:
+    count=0
+    for i in marks:
+        count+=i
+    avg=count/len(marks)
+    return avg
+print(average_marks([1,2,3]))
+```
 ---
 
 ## 🔬 Level 3 – Advanced Practice

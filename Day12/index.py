@@ -1,5 +1,8 @@
 
-import math
-def circle_area(radius):
-    return math.pi*radius*radius;
-print(circle_area(1));
+def average_marks(marks:list[float])->float:
+    count=0
+    for i in marks:
+        count+=i
+    avg=count/len(marks)
+    return avg
+print(average_marks([1,2,3]))
